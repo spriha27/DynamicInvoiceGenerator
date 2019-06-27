@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class Document(models.Model):
+    document = models.FileField(upload_to='documents/emailtemplates')
+
+class File(models.Model):
+    file = models.FileField(upload_to='documents/datafiles')

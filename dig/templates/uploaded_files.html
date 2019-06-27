@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+{% block content %}
+
+<p>Uploaded files:</p>
+  <ul>
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
