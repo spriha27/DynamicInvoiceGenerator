@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^simple/$', views.file_upload, name='file_upload'),
     url(r'^uploaded/$', views.continue_to_data, name='continue_to_data'),
     path('admin/', admin.site.urls),
+    url(r'^render/$',views.renderTemp, name='render'),
 ]
 
 

@@ -8,12 +8,23 @@
   or<br><br>
   Choose from already uploaded files:
    <ul>
-    {% for obj in documents %}
-      <li>
-        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
-      </li>
-    {% endfor %}
+    
   </ul>
+  <form method="post" action="{% url 'render' %}">
+      {% csrf_token %}
+    <select name="html">
+      {% for obj in documents %}
+        <option value="{{ obj.id }}">{{ obj.document.name }}</option>
+      {% endfor %}
+    </select>
+    <select name="csv">
+      {% for obj in csvs %}
+        <option value="{{ obj.id }}">{{ obj.file.name }}</option>
+      {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit">
+  </form>
 
   <p><a href="{% url 'home' %}">Return to home</a></p>
   <p><a href="{% url 'continue_to_data' %}">continue</a></p>
