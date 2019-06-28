@@ -16,21 +16,21 @@ def home(request):
 def file_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'file_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    else if request.method == 'POST' and request.FILES['mydata']:
-        myfile = request.FILES['mydata']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'file_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'file_upload.html')
+        if myfile.name.endswith('.html'):
+            fileObj = Document(document = myfile);
+            fileObj.save()
+        elif myfile.name.endswith('.csv'):
+            fileObj = File(file=myfile)
+            fileObj.save()
+        
+    allObj = Document.objects.all()
+    print(allObj)
+    # fs = FileSystemStorage()
+    # filename = fs.save(myfile.name, myfile)
+    # uploaded_file_url = fs.url(filename)
+    return render(request, 'file_upload.html', {
+        'documents': allObj
+    })
 
 def continue_to_data(request):
 	return render(request, 'uploaded_files.html')

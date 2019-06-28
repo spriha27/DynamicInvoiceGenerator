@@ -9,7 +9,7 @@ from dig import views
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
     url(r'^simple/$', views.file_upload, name='file_upload'),
-    url(r'^uploaded/$', views.uploaded_files, name='continue_to_data'),
+    url(r'^uploaded/$', views.continue_to_data, name='continue_to_data'),
     path('admin/', admin.site.urls),
 ]
 
